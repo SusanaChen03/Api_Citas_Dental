@@ -1,20 +1,24 @@
-import Sequelize from 'sequelize';
+const Sequelize = require ('sequelize');
+const dotenv = require ('dotenv');
+dotenv.config();
 
-let sequelize;
 
 
-try {
-    sequelize = new Sequelize('videoclubsql', 'root', 'Susana23186', {
-        host: 'localhost',
-        dialect: 'mysql'
-    });
-    await sequelize.authenticate();
-    console.log('Conexión sequelize conectada.');
-    
-} catch (error) {
-    console.error('No se puede conectar a la base de datos:', error);
+const conexion = new Sequelize('videoclubsql', 'root', process.env.MYSQL_PASS, {
+    host: 'localhost',
+    dialect: 'mysql'
+});
+
+const arranque = async ()=>{
+    try {
+        await conexion.authenticate();
+        console.log('Conexión sequelize conectada 👌');
+        
+    } catch (error) {
+        console.error('No se puede conectar a la base de datos:', error);
+    };
 };
 
+arranque();
 
-export default sequelize;
- 
+module.exports = conexion; 
