@@ -30,3 +30,5 @@ try {
 } catch (e) {
   console.log(error + " Este es el error");
 }
+
+module.exports = Usuario;

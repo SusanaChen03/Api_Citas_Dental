@@ -2,7 +2,6 @@ const { Sequelize, DataTypes } = require("sequelize");
 const conexion = require("../config/db_sequelize.js");
 
 const Paciente = conexion.define("Pacientes", {
-
   direccion: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -14,11 +13,10 @@ const Paciente = conexion.define("Pacientes", {
   idUsuario: {
     type: DataTypes.INTEGER,
   },
-  alergia : {
-      type: DataTypes.STRING
-  }
+  alergia: {
+    type: DataTypes.STRING,
+  },
 });
-
 
 console.log(Paciente === conexion.models.Paciente); // true
 
@@ -27,3 +25,5 @@ try {
 } catch (e) {
   console.log(e + " Este es el error");
 }
+
+module.exports = Paciente;

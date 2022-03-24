@@ -2,7 +2,6 @@ const { Sequelize, DataTypes } = require("sequelize");
 const conexion = require("../config/db_sequelize.js");
 
 const Citas = conexion.define("Citas", {
-
   tratamiento: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -16,7 +15,6 @@ const Citas = conexion.define("Citas", {
   },
 });
 
-
 console.log(Citas === conexion.models.Citas); // true
 
 try {
@@ -24,3 +22,5 @@ try {
 } catch (e) {
   console.log(e + " Este es el error");
 }
+
+module.exports = Citas;
