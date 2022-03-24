@@ -1,0 +1,26 @@
+const { Sequelize, DataTypes } = require("sequelize");
+const conexion = require("../config/db_sequelize.js");
+
+const Citas = conexion.define("Citas", {
+
+  tratamiento: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  fechaDeVisita: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
+  idUsuario: {
+    type: DataTypes.INTEGER,
+  },
+});
+
+
+console.log(Citas === conexion.models.Citas); // true
+
+try {
+  Citas.sync();
+} catch (e) {
+  console.log(e + " Este es el error");
+}
