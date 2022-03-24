@@ -1,4 +1,4 @@
-const usuarios = require ('./model.js');
+const usuarios = require ('./usuario_model.js');
 
 
 

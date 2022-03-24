@@ -1,7 +1,7 @@
 const sequelize = require ('sequelize');
 const express = require('express');
 const router = express.Router();
-const controller = require('./controller.js');
+const controller = require('./usuario_controller.js');
 
 router.get('/',controller.traerUsuarios);
 router.post('/',controller.crearUsuario);
