@@ -4,7 +4,7 @@ const usuarios = require ('./model.js');
 
 
 
-module.exports.traerUsuarios = async (req, res) => {
+module.exports.traerUsuarios = async (req, res) => {                //GET DE USUARIOS //buscar por nombre del usuario
     const lista = await usuarios.findAll({
         where:{
             nombre: req.query.nombre,
@@ -15,10 +15,12 @@ module.exports.traerUsuarios = async (req, res) => {
 
 
 
-module.exports.crearUsuario = async (req,res)=>{
+module.exports.crearUsuario = async (req,res)=>{                    //POST DE USUARIOS
 
     const nuevoUsuario ={nombre:req.body.nombre,email:req.body.email, contraseña:req.body.contraseña,rol:req.body.rol} 
 
         const usuarioCreado = await user.create(nuevoUsuario);
         res.status(201).json(usuarioCreado);
 };
+
+
