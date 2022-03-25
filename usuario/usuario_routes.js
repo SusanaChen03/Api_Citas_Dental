@@ -8,5 +8,6 @@ router.post("/", controller.crearUsuario);
 router.post("/login", controller.login);
 router.post("/logout",controller.logout);
 router.patch("/", controller.editarUsuario);
+router.delete("/",controller.borrarUsuario);
 
 module.exports = router;
