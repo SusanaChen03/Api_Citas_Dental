@@ -1,6 +1,7 @@
 const express = require ('express');
 const app = express();
 const usRouter = require ('./usuario/usuario_routes.js');
+const citaRouter = require ('./cita/cita_router.js');
 const dotenv = require ('dotenv');
 
 dotenv.config();
@@ -11,3 +12,4 @@ app.use(express.json());
 app.listen(process.env.PORT, () => console.log('servidor levantado'));
 
 app.use ('/usuarios', usRouter);
+app.use ('/citas', citaRouter);
