@@ -26,14 +26,25 @@ module.exports.crearUsuario = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   try {
+    console.log(
+      req.body.email,
+      req.body.contraseña + " Este es el cuerpo de la peticion"
+    );
     const buscarUsuario = await Usuario.findOne({
       where: { email: req.body.email, contraseña: req.body.contraseña },
     });
-    if (buscarUsuario) {
+
+    console.log(buscarUsuario + " usuario encontrado");
+    if (buscarUsuario != null) {
+      console.log("ficha starting");
+
       const ficha = jwt.sign(
         { rol: buscarUsuario.rol, id: buscarUsuario.id },
         process.env.JWT_KEY
       );
+
+      console.log("ficha", ficha);
+
       res.json(ficha);
     } else {
       res.status(401).send("Usuario no encontrado");
