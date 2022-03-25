@@ -75,10 +75,14 @@ module.exports.logout = async (req,res)=> {
 
 // patch  no conseguido
 module.exports.editarUsuario = async(req,res)=>{
-    const buscarYEditar = await Usuario.update({nombre:"rogelio"},{
-      where: {nombre:"roge"}
+
+    await Usuario.update({
+      id:req.body.did,
+    },{   
+      where: {
+        }
     });
-    res.json(buscarYEditar);
+    res.json("Usuario editado");
 
 };
 
@@ -92,3 +96,21 @@ module.exports.borrarUsuario = async (req,res)=>{
   });
   res.json("Usuario Borrado")
 };
+
+
+
+module.exports.autorizacion = async (req,res)=> {
+
+    try{
+      const verificacion = jwt.verify(req.headers.token, process.env.JWT_SECRET);
+  if(verificacion == 'client' || verificacion =='admin'){
+      next();
+  }else{
+          console.log('error else'+ verificacion);
+  res.json (403);
+  }
+  }catch(e){
+      console.log("el error es" + e)
+  res.json (401);
+  }
+}
