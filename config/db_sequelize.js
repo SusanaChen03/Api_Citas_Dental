@@ -22,5 +22,5 @@ const arranque = async () => {
 };
 
 arranque();
-
+//exportando conexion
 module.exports = conexion;
