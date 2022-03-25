@@ -85,7 +85,7 @@ module.exports.editarUsuario = async(req,res)=>{
 
 module.exports.borrarUsuario = async (req,res)=>{
 
-  const usuarioBorrado = await Usuario.destroy({
+  await Usuario.destroy({
     where: {
       nombre:req.body.nombre
     }
