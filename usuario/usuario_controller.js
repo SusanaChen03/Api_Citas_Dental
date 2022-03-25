@@ -1,6 +1,8 @@
 const Usuario = require("./usuario_model.js");
 const jwt = require("jsonwebtoken");
 
+
+
 module.exports.traerUsuario = async (req, res) => {
   //GET DE Usuario //buscar por nombre del usuario
   const lista = await Usuario.findAll({
@@ -10,6 +12,8 @@ module.exports.traerUsuario = async (req, res) => {
   });
   res.json(lista);
 };
+
+
 
 module.exports.crearUsuario = async (req, res) => {
   //POST DE Usuario
@@ -23,6 +27,9 @@ module.exports.crearUsuario = async (req, res) => {
   const usuarioCreado = await Usuario.create(nuevoUsuario);
   res.status(201).json(usuarioCreado);
 };
+
+
+
 
 module.exports.login = async (req, res) => {
   try {
