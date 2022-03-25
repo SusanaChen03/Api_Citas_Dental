@@ -33,24 +33,16 @@ module.exports.crearUsuario = async (req, res) => {
 
 module.exports.login = async (req, res) => {
   try {
-    console.log(
-      req.body.email,
-      req.body.contraseña + " Este es el cuerpo de la peticion"
-    );
     const buscarUsuario = await Usuario.findOne({
       where: { email: req.body.email, contraseña: req.body.contraseña },
     });
 
-    console.log(buscarUsuario + " usuario encontrado");
     if (buscarUsuario != null) {
-      console.log("ficha starting");
 
       const ficha = jwt.sign(
         { rol: buscarUsuario.rol, id: buscarUsuario.id },
         process.env.JWT_KEY
       );
-
-      console.log("ficha", ficha);
 
       res.json(ficha);
     } else {
@@ -60,3 +52,36 @@ module.exports.login = async (req, res) => {
     res.json(error);
   }
 };
+
+
+
+module.exports.logout = async (req,res)=> {
+  try {
+    const buscarUsuario = await Usuario.findOne({
+      where: {email: req.body.email, contraseña: req.body.contraseña},
+    });
+
+    if(buscarUsuario != null){
+      console.log("Se a cerrado la sesion"),
+      res.json("Se a cerrado la sesion")
+    } else {
+      res.status(401).send("Usuario incorrecto");
+    }
+  } catch (error) {
+    res.json(error + "error");
+  };
+};
+
+
+// patch  no conseguido
+module.exports.editarUsuario = async(req,res)=>{
+    const buscarYEditar = await Usuario.update({nombre:"rogelio"},{
+      where: {nombre:"roge"}
+    });
+    res.json(buscarYEditar);
+
+};
+
+
+
+
