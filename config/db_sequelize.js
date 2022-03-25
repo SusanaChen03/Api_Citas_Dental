@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const conexion = new Sequelize(
-  proces.env.HEROKU_NAME_DB,
+  process.env.HEROKU_NAME_DB,
   process.env.HEROKU_USER,
   process.env.HEROKU_PASS,
   {
