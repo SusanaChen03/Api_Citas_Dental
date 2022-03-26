@@ -1,3 +1,5 @@
+const req = require('express/lib/request');
+const res = require('express/lib/response');
 const Citas = require ('./cita_model.js')
 
 module.exports.traerCita = async (req, res) => {
@@ -34,4 +36,21 @@ module.exports.crearCita = async (req, res) => {
     
   };
 
+  module.exports.borrarCita = async (req,res) =>{
+      //Delete borrar cita por el id
+      try{
+          await Citas.destroy({where:{id:req.body.id}});
+          res.json("citaborrada");   
+      }catch (error){
+          res.json(error);
+      }
+  }
 
+  module.exports.modificarCita = () =>{
+      try{
+          await Citas.update(req.body, {where:{id: req.params.id}});
+          res.json("paciente modificado");
+      } catch (error){
+          res.json(error);
+      }
+};
