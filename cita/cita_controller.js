@@ -4,14 +4,31 @@ const Citas = require ('./cita_model.js')
 
 const { Sequelize, DataTypes } = require("sequelize");
 
-module.exports.traerCita = async (req, res) => {
+
+module.exports.traerCita = async (req, res) => {    
+  
+    try {
+      const lista = await Citas.findAll({
+        where: {
+          idPaciente: req.query.IdPaciente,
+        },
+      });
+      res.json(lista);
+    } catch (error){
+      res.json(error + "error")
+    };
+  };
+  
+
+  
+module.exports.traerCitaFutura = async (req, res) => {
     //GET DE Cita //buscar por el id de la cita
     try{
         console.log("traer cita")
         const lista = await Citas.findAll({
             where: {
                 [Sequelize.Op.and]:{
-                    idUsuario: req.query.idUsuario,
+                    idPaciente: req.query.idPaciente,
                     fechaDeVisita: {[Sequelize.Op.gte]: new Date()}
                 }
             }
@@ -32,7 +49,7 @@ module.exports.crearCita = async (req, res) => {
         const nuevaCita = {
             tratamiento: req.body.tratamiento,
             fechaDeVisita: req.body.fechaDeVisita,
-            idUsuario: req.body.idPaciente
+            idPaciente: req.body.idPaciente
           };
         
           const citaCreada = await Citas.create(nuevaCita);

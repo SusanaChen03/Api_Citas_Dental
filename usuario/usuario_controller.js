@@ -120,7 +120,7 @@ module.exports.autorizacion = async (req,res)=> {
 
     try{
       const verificacion = jwt.verify(req.headers.token, process.env.JWT_SECRET);
-  if(verificacion =='administrador'){
+  if(verificacion.rol == 'admin'){
       next();
   }else{
           console.log('error else'+ verificacion);
@@ -131,3 +131,7 @@ module.exports.autorizacion = async (req,res)=> {
   res.json (401);
   };
 };
+
+
+//citas.hasMany(paciente, foreignkey: "IdPaciente")
+//paciente.hasOne(citas, foreignkey: "idUsuario")
