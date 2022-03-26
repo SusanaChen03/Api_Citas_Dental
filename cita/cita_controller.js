@@ -2,12 +2,18 @@ const Citas = require ('./cita_model.js')
 
 module.exports.traerCita = async (req, res) => {
     //GET DE Cita //buscar por el id de la cita
-    const lista = await Citas.findAll({
-      where: {
-        idUsuario: req.query.idUsuario,
-      },
-    });
-    res.json(lista);
+    try{
+        const lista = await Citas.findAll({
+            where: {
+              idUsuario: req.query.idUsuario,
+            },
+          });
+          res.json(lista);
+    }
+    catch(error){
+        res.json(error)
+    }
+    
   };
 
 module.exports.crearCita = async (req, res) => {
