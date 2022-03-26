@@ -46,7 +46,7 @@ module.exports.crearCita = async (req, res) => {
       }
   }
 
-  module.exports.modificarCita = () =>{
+  module.exports.modificarCita = async (req,res) =>{
       try{
           await Citas.update(req.body, {where:{id: req.params.id}});
           res.json("paciente modificado");
