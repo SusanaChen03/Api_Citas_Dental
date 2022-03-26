@@ -13,7 +13,7 @@ const Paciente = conexion.define("Pacientes", {
   idUsuario: {
     type: DataTypes.INTEGER,
   },
-  alergia: {
+  alergias: {
     type: DataTypes.STRING,
   },
 });
