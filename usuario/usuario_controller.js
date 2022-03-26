@@ -120,17 +120,35 @@ module.exports.autorizacion = async (req,res)=> {
 
     try{
       const verificacion = jwt.verify(req.headers.token, process.env.JWT_SECRET);
-  if(verificacion.rol == 'admin'){
+      if(verificacion.rol == 'admin'){
       next();
-  }else{
+      }else{
           console.log('error else'+ verificacion);
-  res.json (403);
-  }
+      res.json (403);
+     }
   }catch(e){
       console.log("el error es" + e)
   res.json (401);
   };
 };
+
+
+module.exports.crearAdmin = async (req,res)=> {
+  
+  try{
+    const nuevoAdmin = {
+      nombre: req.body.nombre,
+      email: req.body.email,
+      contraseña: req.body.contraseña,
+      rol: req.body.rol,
+    };
+  
+    const adminCreado = await Usuario.create(nuevoAdmin);
+    res.status(201).json(adminCreado);
+  } catch (error) {
+    res.json(error + "error")
+  };
+}
 
 
 //citas.hasMany(paciente, foreignkey: "IdPaciente")
