@@ -33,7 +33,8 @@ module.exports.crearPaciente = async (req, res) => {
 
 module.exports.modificarPaciente = async (req, res) => {
   try {
-    await Paciente.updateOne({ id: req.params.id }, req.body);
+    await Paciente.update(req.body, { where: { id: req.params.id } });
+    res.json("Paciente modificado");
   } catch (error) {
     res.json(error);
   }
@@ -41,7 +42,8 @@ module.exports.modificarPaciente = async (req, res) => {
 
 module.exports.bajaPaciente = async (req, res) => {
   try {
-    res.json(await Paciente.deleteOne({ id: req.params.id }));
+    await Paciente.destroy({ where: { id: req.body.id } });
+    res.json("Paciente borrado");
   } catch (error) {
     res.json(error);
   }
