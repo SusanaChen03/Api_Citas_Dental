@@ -6,5 +6,5 @@ const controller = require("./cita_controller.js");
 router.get("/", controller.traerCita);
 router.post("/", controller.crearCita);
 router.delete("/", controller.borrarCita);
-router.patch("/", controller.modificarCita);
+router.patch("/:id", controller.modificarCita);
 module.exports=router

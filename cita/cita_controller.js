@@ -7,7 +7,7 @@ module.exports.traerCita = async (req, res) => {
     try{
         const lista = await Citas.findAll({
             where: {
-              idUsuario: req.query.idUsuario,
+              idPaciente: req.query.idPaciente,
             },
           });
           res.json(lista);
@@ -40,7 +40,7 @@ module.exports.crearCita = async (req, res) => {
       //Delete borrar cita por el id
       try{
           await Citas.destroy({where:{id:req.body.id}});
-          res.json("citaborrada");   
+          res.json("Cita borrada");   
       }catch (error){
           res.json(error);
       }
@@ -49,7 +49,7 @@ module.exports.crearCita = async (req, res) => {
   module.exports.modificarCita = async (req,res) =>{
       try{
           await Citas.update(req.body, {where:{id: req.params.id}});
-          res.json("paciente modificado");
+          res.json("Cita modificada");
       } catch (error){
           res.json(error);
       }

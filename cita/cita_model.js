@@ -10,7 +10,7 @@ const Citas = conexion.define("Citas", {
     type: DataTypes.STRING,
    
   },
-  idUsuario: {
+  idPaciente: {
     type: DataTypes.INTEGER,
   },
 });
