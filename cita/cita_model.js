@@ -7,10 +7,10 @@ const Citas = conexion.define("Citas", {
 
   },
   fechaDeVisita: {
-    type: DataTypes.STRING,
+    type: DataTypes.DATE,
    
   },
-  idPaciente: {
+  idUsuario: {
     type: DataTypes.INTEGER,
   },
 });
