@@ -27,7 +27,7 @@ module.exports.crearUsuario = async (req, res) => {
       nombre: req.body.nombre,
       email: req.body.email,
       contraseña: req.body.contraseña,
-      rol: req.body.rol,
+      rol: 'paciente',
     };
   
     const usuarioCreado = await Usuario.create(nuevoUsuario);
