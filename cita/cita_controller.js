@@ -14,6 +14,7 @@ module.exports.crearCita = async (req, res) => {
     //POST DE CITA
     const nuevaCita = {
       tratamiento: req.body.tratamiento,
+      fechaDeVisita: req.body.fechaDeVisita,
       idUsuario: req.body.idUsuario,
     };
   
