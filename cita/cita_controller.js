@@ -12,14 +12,20 @@ module.exports.traerCita = async (req, res) => {
 
 module.exports.crearCita = async (req, res) => {
     //POST DE CITA
-    const nuevaCita = {
-      tratamiento: req.body.tratamiento,
-      fechaDeVisita: req.body.fechaDeVisita,
-      idUsuario: req.body.idUsuario,
-    };
-  
-    const citaCreada = await Citas.create(nuevaCita);
-    res.status(201).json(citaCreada);
+    try{
+        const nuevaCita = {
+            tratamiento: req.body.tratamiento,
+            fechaDeVisita: req.body.fechaDeVisita,
+            idUsuario: req.body.idUsuario,
+          };
+        
+          const citaCreada = await Citas.create(nuevaCita);
+          res.status(201).json(citaCreada);
+    }
+    catch(error){
+        res.json(error)
+    }
+    
   };
 
 
