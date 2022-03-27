@@ -1,10 +1,8 @@
 const Usuario = require("./usuario_model.js");
 const jwt = require("jsonwebtoken");
 
-
- //GET DE Usuario //buscar por nombre del usuario
-module.exports.traerUsuario = async (req, res) => {    
-  
+//GET DE Usuario //buscar por nombre del usuario
+module.exports.traerUsuario = async (req, res) => {
   try {
     const lista = await Usuario.findAll({
       where: {
@@ -12,44 +10,35 @@ module.exports.traerUsuario = async (req, res) => {
       },
     });
     res.json(lista);
-  } catch (error){
-    res.json(error + "error")
-  };
+  } catch (error) {
+    res.json(error + "error");
+  }
 };
 
-
-
- //POST DE Usuario
-module.exports.crearUsuario = async (req, res) => {       
-
-  try{
+//POST DE Usuario
+module.exports.crearUsuario = async (req, res) => {
+  try {
     const nuevoUsuario = {
       nombre: req.body.nombre,
       email: req.body.email,
       contraseña: req.body.contraseña,
-      rol: 'paciente',
+      rol: "paciente",
     };
-  
+
     const usuarioCreado = await Usuario.create(nuevoUsuario);
     res.status(201).json(usuarioCreado);
   } catch (error) {
-    res.json(error + "error")
-  };
+    res.json(error + "error");
+  }
 };
 
-
-
-
-
 module.exports.login = async (req, res) => {
-
   try {
     const buscarUsuario = await Usuario.findOne({
       where: { email: req.body.email, contraseña: req.body.contraseña },
     });
 
     if (buscarUsuario != null) {
-
       const ficha = jwt.sign(
         { rol: buscarUsuario.rol, id: buscarUsuario.id },
         process.env.JWT_KEY
@@ -64,88 +53,78 @@ module.exports.login = async (req, res) => {
   }
 };
 
-
-
-module.exports.logout = async (req,res)=> {
+module.exports.logout = async (req, res) => {
   try {
     const buscarUsuario = await Usuario.findOne({
-      where: {email: req.body.email, contraseña: req.body.contraseña},
+      where: { email: req.body.email, contraseña: req.body.contraseña },
     });
 
-    if(buscarUsuario != null){
-      console.log("Se a cerrado la sesion"),
-      res.json("Se a cerrado la sesion")
+    if (buscarUsuario != null) {
+      console.log("Se a cerrado la sesion"), res.json("Se a cerrado la sesion");
     } else {
       res.status(401).send("Usuario incorrecto");
     }
   } catch (error) {
     res.json(error + "error");
-  };
+  }
 };
 
-
-// patch 
-module.exports.editarUsuario = async(req,res)=>{
-  try{
+// patch
+module.exports.editarUsuario = async (req, res) => {
+  try {
     await Usuario.update(req.body, {
-      where:{
-        id:req.params.id
-      }
+      where: {
+        id: req.params.id,
+      },
     });
     res.json("Usuario editado");
-  } catch (error){
+  } catch (error) {
     res.json(error + "error");
   }
 };
 
-
-
 //borrar usuario
-module.exports.borrarUsuario = async (req,res)=>{
+module.exports.borrarUsuario = async (req, res) => {
   try {
     await Usuario.destroy({
       where: {
-        id:req.body.id
-      }
+        id: req.body.id,
+      },
     });
-    res.json("Usuario Borrado")
-  } catch (error){
-    res.json(error + "error")
-  };
+    res.json("Usuario Borrado");
+  } catch (error) {
+    res.json(error + "error");
+  }
 };
 
+// module.exports.autorizacion = async (req,res,next)=> {
 
+//   try{
+//     const verificacion = jwt.verify(req.headers.token, process.env.JWT_KEY);
+//     if(verificacion.rol == 'admin'){
+//     next();
+//     }else{
+//         console.log('error else'+ verificacion);
+//     res.json (403);
+//     }
+//   }catch(e){
+//       console.log("el error es" + e)
+//   res.json (401);
+//   };
+// };
 
-module.exports.autorizacion = async (req,res,next)=> {
-
-  try{
-    const verificacion = jwt.verify(req.headers.token, process.env.JWT_KEY);
-    if(verificacion.rol == 'admin'){
-    next();
-    }else{
-        console.log('error else'+ verificacion);
-    res.json (403);
-    }
-  }catch(e){
-      console.log("el error es" + e)
-  res.json (401);
-  };
-};
-
-
-module.exports.crearAdmin = async (req,res)=> {
-  
-  try{
+module.exports.crearAdmin = async (req, res) => {
+  try {
     const nuevoAdmin = {
       nombre: req.body.nombre,
       email: req.body.email,
       contraseña: req.body.contraseña,
       rol: req.body.rol,
     };
-  
+
     const adminCreado = await Usuario.create(nuevoAdmin);
     res.status(201).json(adminCreado);
   } catch (error) {
-    res.json(error + "error")
-  };
-}
+    res.json(error + "error");
+  }
+};
