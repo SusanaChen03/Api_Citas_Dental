@@ -1,16 +1,16 @@
 const res = require("express/lib/response");
 const Paciente = require("./paciente_model.js");
 const Usuarios = require("../config/relaciones.js");
-const Relaciones = require("../config/relaciones.js");
+//const Relaciones = require("../config/relaciones.js");
 
 module.exports.infoPaciente = async (req, res) => {
   //GET del Paciente
   try {
     const lista = await Paciente.findAll({
+      include: [{ model: Usuarios }],
       where: {
         idUsuario: req.query.idUsuario,
       },
-      include: [{ model: Usuarios }],
     });
     res.json(lista);
   } catch (error) {

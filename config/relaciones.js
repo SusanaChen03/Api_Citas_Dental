@@ -8,4 +8,6 @@ Usuarios.hasOne(Pacientes, { foreignKey: "id" });
 Pacientes.hasOne(Citas, { foreignKey: "id" });
 Citas.hasMany(Pacientes, { foreignKey: "idPaciente" });
 
-module.exports = { Usuarios: Usuarios, Pacientes: Pacientes, Citas: Citas };
+module.exports.Usuarios = Usuarios;
+module.exports.Pacientes = Pacientes;
+module.exports.Citas = Citas;
