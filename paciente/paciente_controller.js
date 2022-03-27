@@ -1,5 +1,6 @@
 const res = require("express/lib/response");
 const Paciente = require("./paciente_model.js");
+const Usuarios = require("../usuario/usuario_model.js");
 
 module.exports.infoPaciente = async (req, res) => {
   //GET del Paciente
@@ -8,6 +9,7 @@ module.exports.infoPaciente = async (req, res) => {
       where: {
         idUsuario: req.query.idUsuario,
       },
+      include: [{ model: Usuarios }],
     });
     res.json(lista);
   } catch (error) {
