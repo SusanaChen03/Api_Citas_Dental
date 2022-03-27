@@ -5,7 +5,9 @@ const Citas = require ('./cita_model.js')
 const { Sequelize, DataTypes } = require("sequelize");
 
 
-module.exports.traerCita = async (req, res) => {    
+
+
+module.exports.listaCita = async (req, res) => {    
   
     try {
       const lista = await Citas.findAll({
@@ -18,10 +20,10 @@ module.exports.traerCita = async (req, res) => {
       res.json(error + "error")
     };
   };
-  
 
-  
-module.exports.traerCitaFutura = async (req, res) => {
+
+
+module.exports.filtrarCita = async (req, res) => {
     //GET DE Cita //buscar por el id de la cita
     try{
         console.log("traer cita")
