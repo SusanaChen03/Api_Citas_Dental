@@ -9,7 +9,8 @@ const Citas = require("../cita/cita_model.js");
 Pacientes.belongsTo(Usuarios, {foreignKey: "idUsuario"});
 
 Pacientes.hasMany(Citas, { foreignKey: "idPaciente" });
-Citas.belongsTo(Pacientes);
+Citas.belongsTo(Pacientes, { foreignKey: "idPaciente" });
+//Citas.belongsTo(Pacientes);
 
 //module.exports.Usuarios = Usuarios;
 //module.exports.Pacientes = Pacientes;

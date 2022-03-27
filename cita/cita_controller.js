@@ -1,6 +1,6 @@
-const req = require('express/lib/request');
-const res = require('express/lib/response');
+
 const Citas = require ('./cita_model.js')
+const Paciente = require ("../paciente/paciente_model.js");
 
 const { Sequelize, DataTypes } = require("sequelize");
 
@@ -11,9 +11,10 @@ module.exports.listaCita = async (req, res) => {
   
     try {
       const lista = await Citas.findAll({
+        include: [{ model: Paciente }],
         where: {
-          idPaciente: req.query.IdPaciente,
-        },
+          idPaciente: req.query.IdPaciente
+        }
       });
       res.json(lista);
     } catch (error){
