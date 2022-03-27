@@ -10,7 +10,7 @@ module.exports.infoPaciente = async (req, res) => {
       where: {
         idUsuario: req.query.idUsuario,
       },
-      include: [{ model: Usuarios }],
+      include: [{ model: Relaciones.Usuarios }],
     });
     res.json(lista);
   } catch (error) {
