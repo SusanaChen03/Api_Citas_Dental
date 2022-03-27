@@ -1,79 +1,105 @@
-🐘🎯 Hexagonal Architecture, DDD & CQRS in PHP
-codely.tv CodelyTV Courses Symfony 5.0 CI pipeline status
+![enter image description here](https://img.freepik.com/vector-gratis/plantilla-diseno-logotipo-clinica-dental-simple_332233-310.jpg?size=626&ext=jpg)
 
-Example of a PHP application using Domain-Driven Design (DDD) and Command Query Responsibility Segregation (CQRS) principles keeping the code as simple as possible.
+🦷🪥 ***App de Citas - Clínica Dental*** 🪥🦷
+-
 
-Take a look, play and have fun with this. Stars are welcome 😊
+**Proyecto #5 del bootcamp fullstack developer Geekshubs 2022.**
 
-View Demo · Report a bug · Request a feature
+  Esta app de cita consiste en una api que consta de 3 entidades (Usuario, Paciente y Cita) en la cual hicimos un CRUD de cada uno de ellos con sus respectivo modelos y las claves que los definen. 
+En este Proyecto trabajamos con una base de datos relacional (MYSQL) lo cual se generan tablas de cada una de las entidades y se relacionan según la petición con la foreing key, también usamos jswebtoken para hacer la verificación y autentificación en algunos endpoint de la app.
 
-🚀 Environment Setup
-🐳 Needed tools
-Install Docker
-Clone this project: git clone https://github.com/CodelyTV/php-ddd-example php-ddd-example
-Move to the project folder: cd php-ddd-example
-🛠️ Environment configuration
-Create a local environment file (cp .env .env.local) if you want to modify any parameter
-🔥 Application execution
-Install all the dependencies and bring up the project with Docker executing: make build
-Then you'll have 3 apps available (2 APIs and 1 Frontend):
-Mooc Backend: http://localhost:8030/health-check
-Backoffice Backend: http://localhost:8040/health-check
-Backoffice Frontend: http://localhost:8041/health-check
-✅ Tests execution
-Install the dependencies if you haven't done it previously: make deps
-Execute PHPUnit and Behat tests: make test
-👩‍💻 Project explanation
-This project tries to be a MOOC (Massive Open Online Course) platform. It's decoupled from any framework, but it has some Symfony and Laravel implementations.
 
-⛱️ Bounded Contexts
-Mooc: Place to look in if you wanna see some code 🙂. Massive Open Online Courses public platform with users, videos, notifications, and so on.
-Backoffice: Here you'll find the use cases needed by the Customer Support department in order to manage users, courses, videos, and so on.
-🎯 Hexagonal Architecture
-This repository follows the Hexagonal Architecture pattern. Also, it's structured using modules. With this, we can see that the current structure of a Bounded Context is:
+⚙️Descripción de las entidades:
+👨‍💻Usuario:
+- 
+- **Get:**  "/usuarios" para buscar un usuario por el nombre, si ese usuario no existe te devuelve toda la lista de usuarios.
+- **Post**: Tenemos tres endpoint con el el método post (/admin : para la autorización y crear usuario , /login y  /logout : nombre y contraseña.)
+- **Patch:** Para buscar datos de un usuario por la query params y modificándolo por el body.
+- **Delete:** Para borrar un usuario a través de su Id.
 
-$ tree -L 4 src
+👀**Modelo usuario**
 
-src
-|-- Mooc // Company subdomain / Bounded Context: Features related to one of the company business lines / products
-| `-- Videos // Some Module inside the Mooc context | |-- Application | | |-- Create // Inside the application layer all is structured by actions | | | |-- CreateVideoCommand.php | | | |-- CreateVideoCommandHandler.php | | | `-- VideoCreator.php
-| | |-- Find
-| | |-- Trim
-| | `-- Update | |-- Domain | | |-- Video.php // The Aggregate of the Module | | |-- VideoCreatedDomainEvent.php // A Domain Event | | |-- VideoFinder.php | | |-- VideoId.php | | |-- VideoNotFound.php | | |-- VideoRepository.php // The `Interface`of the repository is inside Domain | | |-- VideoTitle.php | | |-- VideoType.php | | |-- VideoUrl.php | | `-- Videos.php // A collection of our Aggregate
-| `-- Infrastructure // The infrastructure of our module | |-- DependencyInjection | `-- Persistence
-| `--MySqlVideoRepository.php // An implementation of the repository `-- Shared // Shared Kernel: Common infrastructure and domain shared between the different Bounded Contexts
-|-- Domain
-`-- Infrastructure
-Repository pattern
-Our repositories try to be as simple as possible usually only containing 2 methods search and save. If we need some query with more filters we use the Specification pattern also known as Criteria pattern. So we add a searchByCriteria method.
+    nombre: {   
+    type:STRING         
+    }, 
+    email: {
+    type: STRING
+    }, 
+    rol: {
+    type:STRING
+    }, 
+    contraseña:{
+    type:STRING
+    }, 
 
-You can see an example here and its implementation here.
+🙋Paciente:
+-
+- **Get:**  
+- **Post:** 
+- **Patch:**
 
-Aggregates
-You can see an example of an aggregate here. All aggregates should extend the AggregateRoot.
+- **Delete:**
 
-Command Bus
-There is 1 implementations of the command bus.
+👀**Modelo paciente**
 
-Sync using the Symfony Message Bus
-Query Bus
-The Query Bus uses the Symfony Message Bus.
+    direccion: {   
+    type:STRING         
+    }, 
+    disponibilidad: {
+    type: INTEGER
+    }, 
+    idUsuarios: {
+    type:STRING
+    }, 
+    alergia:{
+    type:STRING
+    }, 
 
-Event Bus
-The Event Bus uses the Symfony Message Bus. The MySql Bus uses a MySql+Pulling as a bus. The RabbitMQ Bus uses RabbitMQ C extension.
+🗒️Cita:
+-
+- **Get**:  
+- **Post:** 
+- **Patch:**
 
-📱 Monitoring
-Every time a domain event is published it's exported to Prometheus. You can access to the Prometheus panel here.
+- **Delete:**
 
-🤔 Contributing
-There are some things missing (add swagger, improve documentation...), feel free to add this if you want! If you want some guidelines feel free to contact us :)
+👀**Modelo  cita**
 
-🤩 Extra
-This code was shown in the From framework coupled code to #microservices through #DDD talk and doubts where answered in the DDD y CQRS: Preguntas Frecuentes video.
+    tratamiento: {   
+    type:STRING         
+    }, 
+    fechaDeVisita: {
+    type: DATE
+    }, 
+    idPaciente: {
+    type: INTEGER
+    }, 
 
-🎥 Used in the CodelyTV Pro courses:
+📊 Graficas de relaciones de la foreing key
+-
 
-🇪🇸 DDD in PHP
-🇪🇸 Arquitectura Hexagonal
-🇪🇸 CQRS: Command Query Responsibility Segregation
-🇪🇸 Comunicación entre microservicios: Event-Driven Architecture
+
+
+
+
+
+
+
+🎯Instalación  y herramientas necesarias. 
+-
+**🛠️Clonar este proyecto desde :** 
+git clone  https://github.com/SusanaChen03/Api_citas.git
+
+Cree un archivo de entorno local (.env) si desea modificar algún parámetro e instales todas las dependecias necesarias con npm install.
+
+**🔥Herramientas usadas y necesarias.**
+-
+
+ <code><img height="50" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mysql/mysql.png"></code>  <code><img height="50" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/nodejs/nodejs.png"></code>  <code><img height="50" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png"></code> <code><img height="50" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/express/express.png"></code> <code><img height="50" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/git/git.png"></code>
+
+✅Autores 
+-
+Susana Chen https://github.com/SusanaChen03
+David Sanchéz https://github.com/dvdsanar
+Rogelio Toro https://github.com/Rogeliotoro
+
