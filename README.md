@@ -99,7 +99,7 @@ Cree un archivo de entorno local (.env) si desea modificar algún parámetro e i
 
 ✅Autores 
 -
-Susana Chen https://github.com/SusanaChen03
-David Sanchéz https://github.com/dvdsanar
-Rogelio Toro https://github.com/Rogeliotoro
+- Susana Chen https://github.com/SusanaChen03
+- David Sanchéz https://github.com/dvdsanar
+- Rogelio Toro https://github.com/Rogeliotoro
 
