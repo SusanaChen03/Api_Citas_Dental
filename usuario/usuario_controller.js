@@ -116,16 +116,16 @@ module.exports.borrarUsuario = async (req,res)=>{
 
 
 
-module.exports.autorizacion = async (req,res)=> {
+module.exports.autorizacion = async (req,res,next)=> {
 
-    try{
-      const verificacion = jwt.verify(req.headers.token, process.env.JWT_SECRET);
-      if(verificacion.rol == 'admin'){
-      next();
-      }else{
-          console.log('error else'+ verificacion);
-      res.json (403);
-     }
+  try{
+    const verificacion = jwt.verify(req.headers.token, process.env.JWT_KEY);
+    if(verificacion.rol == 'admin'){
+    next();
+    }else{
+        console.log('error else'+ verificacion);
+    res.json (403);
+    }
   }catch(e){
       console.log("el error es" + e)
   res.json (401);
