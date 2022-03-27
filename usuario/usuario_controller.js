@@ -84,7 +84,7 @@ module.exports.logout = async (req,res)=> {
 };
 
 
-// patch  no conseguido
+// patch 
 module.exports.editarUsuario = async(req,res)=>{
   try{
     await Usuario.update(req.body, {
@@ -149,7 +149,3 @@ module.exports.crearAdmin = async (req,res)=> {
     res.json(error + "error")
   };
 }
-
-
-//citas.hasMany(paciente, foreignkey: "IdPaciente")
-//paciente.hasOne(citas, foreignkey: "idUsuario")

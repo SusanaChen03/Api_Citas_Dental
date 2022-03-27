@@ -1,4 +1,4 @@
-const res = require("express/lib/response");
+
 const Paciente = require("./paciente_model.js");
 const Usuarios = require("../usuario/usuario_model.js");
 const Relaciones = require("../config/relaciones.js");

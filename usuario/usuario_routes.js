@@ -5,7 +5,7 @@ const controller = require("./usuario_controller.js");
 
 
 
-router.get("/admin", controller.autorizacion, controller.crearAdmin);
+router.post("/admin", controller.autorizacion, controller.crearAdmin);
 router.get("/", controller.traerUsuario);
 router.post("/", controller.crearUsuario);
 router.post("/login", controller.login);

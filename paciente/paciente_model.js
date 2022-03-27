@@ -4,11 +4,9 @@ const conexion = require("../config/db_sequelize.js");
 const Paciente = conexion.define("Pacientes", {
   direccion: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   disponibilidad: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   idUsuario: {
     type: DataTypes.INTEGER,

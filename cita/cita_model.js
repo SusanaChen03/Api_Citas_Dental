@@ -4,11 +4,9 @@ const conexion = require("../config/db_sequelize.js");
 const Citas = conexion.define("Citas", {
   tratamiento: {
     type: DataTypes.STRING,
-
   },
   fechaDeVisita: {
     type: DataTypes.DATE,
-   
   },
   idPaciente: {
     type: DataTypes.INTEGER,
