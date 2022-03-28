@@ -8,4 +8,5 @@ router.get("/", verificacion(), controller.filtrarCita);
 router.post("/", verificacion(), controller.crearCita);
 router.delete("/", verificacion(), controller.borrarCita);
 router.patch("/:id", verificacion(), controller.modificarCita);
+
 module.exports = router;

@@ -2,7 +2,6 @@ const { Sequelize, DataTypes } = require("sequelize");
 const conexion = require("../config/db_sequelize.js");
 
 const Usuario = conexion.define("Usuarios", {
-  
   nombre: {
     type: DataTypes.STRING,
   },
@@ -17,7 +16,7 @@ const Usuario = conexion.define("Usuarios", {
   },
 });
 
-//console.log(Usuario === conexion.models.Usuario); // true
+console.log(Usuario === conexion.models.Usuario); // true
 
 try {
   Usuario.sync();

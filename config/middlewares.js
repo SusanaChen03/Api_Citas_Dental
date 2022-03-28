@@ -3,19 +3,15 @@ const jwt = require("jsonwebtoken");
 const Usuario = require("../usuario/usuario_model.js");
 
 //Middleware para la verificación a traves de un token
-const verificacion =  (comprobacionRol = null) => {
+const verificacion = (comprobacionRol = null) => {
   return async (req, res, next) => {
     try {
-      
       const token = jwt.verify(req.headers.token, process.env.JWT_KEY);
-      
-      const usuarioPasa = await Usuario.findOne({ where: { id:token.id } });
-      console.log(token.rol)
-      console.log(usuarioPasa + " esto es cuando no hay id");
-      console.log(comprobacionRol);
+
+      const usuarioPasa = await Usuario.findOne({ where: { id: token.id } });
       if (
-        (comprobacionRol == null || token.rol == comprobacionRol) && usuarioPasa != null
-        
+        (comprobacionRol == null || token.rol == comprobacionRol) &&
+        usuarioPasa != null
       ) {
         next();
       } else {

@@ -60,7 +60,7 @@ module.exports.logout = async (req, res) => {
     });
 
     if (buscarUsuario != null) {
-      console.log("Se a cerrado la sesion"), res.json("Se a cerrado la sesion");
+      res.json("Se ha cerrado la sesion");
     } else {
       res.status(401).send("Usuario incorrecto");
     }
@@ -96,22 +96,6 @@ module.exports.borrarUsuario = async (req, res) => {
     res.json(error + "error");
   }
 };
-
-// module.exports.autorizacion = async (req,res,next)=> {
-
-//   try{
-//     const verificacion = jwt.verify(req.headers.token, process.env.JWT_KEY);
-//     if(verificacion.rol == 'admin'){
-//     next();
-//     }else{
-//         console.log('error else'+ verificacion);
-//     res.json (403);
-//     }
-//   }catch(e){
-//       console.log("el error es" + e)
-//   res.json (401);
-//   };
-// };
 
 module.exports.crearAdmin = async (req, res) => {
   try {

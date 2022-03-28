@@ -9,18 +9,16 @@ module.exports.listaCita = async (req, res) => {
       include: [{ model: Paciente }],
       where: {
         idPaciente: req.query.idPaciente,
-      }
+      },
     });
     res.json(lista);
   } catch (error) {
     res.json(error + "error");
   }
 };
-
+//GET de las citas futuras pendientes
 module.exports.filtrarCita = async (req, res) => {
-  //GET DE Cita //buscar por el id de la cita
   try {
-    console.log("traer cita");
     const lista = await Citas.findAll({
       where: {
         [Sequelize.Op.and]: {
@@ -35,10 +33,8 @@ module.exports.filtrarCita = async (req, res) => {
     res.json(error);
   }
 };
-
+//POST DE CITA
 module.exports.crearCita = async (req, res) => {
-  //POST DE CITA
-  console.log(req.body);
   try {
     const nuevaCita = {
       tratamiento: req.body.tratamiento,
@@ -52,9 +48,8 @@ module.exports.crearCita = async (req, res) => {
     res.json(error);
   }
 };
-
+//Delete borrar cita por el id
 module.exports.borrarCita = async (req, res) => {
-  //Delete borrar cita por el id
   try {
     await Citas.destroy({ where: { id: req.body.id } });
     res.json("Cita borrada");
@@ -62,7 +57,7 @@ module.exports.borrarCita = async (req, res) => {
     res.json(error);
   }
 };
-
+//Patch de las citas
 module.exports.modificarCita = async (req, res) => {
   try {
     await Citas.update(req.body, { where: { id: req.params.id } });

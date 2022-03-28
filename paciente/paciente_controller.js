@@ -2,8 +2,8 @@ const Paciente = require("./paciente_model.js");
 const Usuarios = require("../usuario/usuario_model.js");
 const Relaciones = require("../config/relaciones.js");
 
+//GET del Paciente
 module.exports.infoPaciente = async (req, res) => {
-  //GET del Paciente
   try {
     const lista = await Paciente.findAll({
       include: [{ model: Usuarios }],
