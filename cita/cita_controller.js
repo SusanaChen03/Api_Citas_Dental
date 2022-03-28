@@ -9,7 +9,7 @@ module.exports.listaCita = async (req, res) => {
       include: [{ model: Paciente }],
       where: {
         idPaciente: req.query.idPaciente,
-      },
+      }
     });
     res.json(lista);
   } catch (error) {
