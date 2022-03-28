@@ -1,4 +1,3 @@
-
 const Paciente = require("./paciente_model.js");
 const Usuarios = require("../usuario/usuario_model.js");
 const Relaciones = require("../config/relaciones.js");
@@ -9,12 +8,12 @@ module.exports.infoPaciente = async (req, res) => {
     const lista = await Paciente.findAll({
       include: [{ model: Usuarios }],
       where: {
-        idUsuario: req.query.idUsuario
-      }
+        id: req.query.id,
+      },
     });
     res.json(lista);
   } catch (error) {
-    console.log("error por cach"+ error);
+    console.log("error por cach" + error);
     res.json(error);
   }
 };
