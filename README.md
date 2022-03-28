@@ -34,11 +34,11 @@ En este Proyecto trabajamos con una base de datos relacional (MYSQL) lo cual se 
 
 🙋Paciente:
 -
-- **Get:**  
-- **Post:** 
-- **Patch:**
+- **Get:**  para buscar un paciente por el idUsuario, o hacer una petición  - Get al body con el endpoint /paciente.
+- **Post:** Para crear un nuevo paciente se debe poner la dirección, disponibilidad, id usuario y alergia, luego se hace una petición post  al body con los valores introducido.
+- **Patch:** Para buscar datos de un paciente por la query params y modificándolo por el body.
 
-- **Delete:**
+- **Delete:** Para borrar un paciente a través de su Id.
 
 👀**Modelo paciente**
 
@@ -57,11 +57,10 @@ En este Proyecto trabajamos con una base de datos relacional (MYSQL) lo cual se 
 
 🗒️Cita:
 -
-- **Get**:  
-- **Post:** 
-- **Patch:**
-
-- **Delete:**
+- **Get**:  para buscar una cita por el idPaciente, a partir de la fecha de la petición.
+- **Post:** Para crear un nueva cita se debe poner el tratamiento, fechaDeVisita, y el idPaciente luego se hace una petición post  al body con los valores introducido.
+- **Patch:** Para buscar datos de una cita por la query params y modificándolo por el body.
+- **Delete:** Para borrar una cita a través de su Id.
 
 👀**Modelo  cita**
 
@@ -75,8 +74,21 @@ En este Proyecto trabajamos con una base de datos relacional (MYSQL) lo cual se 
     type: INTEGER
     }, 
 
-📊 Graficas de relaciones de la foreing key
+📊 Relaciones/foreing key.
 -
+
+    Pacientes.belongsTo(Usuarios, {foreignKey:  "idUsuario"});
+    Pacientes.hasMany(Citas, { foreignKey:  "idPaciente" });
+    Citas.belongsTo(Pacientes, { foreignKey:  "idPaciente" });
+    
+🔐Middlewares. 
+-
+Usando jswebtoken creamos una función de verificación lo cual nos generan un token y este se usa en algunos endpoint de la app, como por ejemplo: un Admin solo puede generar nuevos usuarios y lo hace precisamente con este token.
+
+
+🚀Despliegue en Heroku.
+-
+Link :
 
 
 
@@ -88,9 +100,9 @@ En este Proyecto trabajamos con una base de datos relacional (MYSQL) lo cual se 
 🎯Instalación  y herramientas necesarias. 
 -
 **🛠️Clonar este proyecto desde :** 
-git clone  https://github.com/SusanaChen03/Api_citas.git
+`git clone`  https://github.com/SusanaChen03/Api_citas.git
 
-Cree un archivo de entorno local (.env) si desea modificar algún parámetro e instales todas las dependecias necesarias con npm install.
+Cree un archivo de entorno local (`.env`) para modificar las variables de entornos  e instales todas las herramientas necesarias con `npm install`.
 
 **🔥Herramientas usadas y necesarias.**
 -
@@ -99,7 +111,6 @@ Cree un archivo de entorno local (.env) si desea modificar algún parámetro e i
 
 ✅Autores 
 -
-- Susana Chen https://github.com/SusanaChen03
-- David Sanchéz https://github.com/dvdsanar
-- Rogelio Toro https://github.com/Rogeliotoro
-
+Susana Chen https://github.com/SusanaChen03
+David Sanchéz https://github.com/dvdsanar
+Rogelio Toro https://github.com/Rogeliotoro
