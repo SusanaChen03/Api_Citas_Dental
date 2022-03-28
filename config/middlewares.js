@@ -11,10 +11,11 @@ const verificacion =  (comprobacionRol = null) => {
       
       const usuarioPasa = await Usuario.findOne({ where: { id:token.id } });
       console.log(token.rol)
+      console.log(usuarioPasa + " esto es cuando no hay id");
       console.log(comprobacionRol);
       if (
-        comprobacionRol == null || 
-        token.rol == comprobacionRol && usuarioPasa != null
+        (comprobacionRol == null || token.rol == comprobacionRol) && usuarioPasa != null
+        
       ) {
         next();
       } else {
