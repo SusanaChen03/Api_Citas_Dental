@@ -8,7 +8,7 @@ module.exports.infoPaciente = async (req, res) => {
     const lista = await Paciente.findAll({
       include: [{ model: Usuarios }],
       where: {
-        id: req.query.id,
+        idUsuario: req.query.idUsuario,
       },
     });
     res.json(lista);
