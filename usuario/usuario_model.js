@@ -17,7 +17,7 @@ const Usuario = conexion.define("Usuarios", {
   },
 });
 
-console.log(Usuario === conexion.models.Usuario); // true
+//console.log(Usuario === conexion.models.Usuario); // true
 
 try {
   Usuario.sync();
