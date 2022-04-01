@@ -1,5 +1,6 @@
 const Citas = require("./cita_model.js");
 const Paciente = require("../paciente/paciente_model.js");
+const conexion = require ("../config/db_sequelize.js")
 
 const { Sequelize, DataTypes } = require("sequelize");
 
@@ -19,6 +20,7 @@ module.exports.listaCita = async (req, res) => {
 //GET de las citas futuras pendientes
 module.exports.filtrarCita = async (req, res) => {
   try {
+    //const queryraw = conexion.query('select * from ... .execute')
     const lista = await Citas.findAll({
       where: {
         [Sequelize.Op.and]: {
